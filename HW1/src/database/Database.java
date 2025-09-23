@@ -541,6 +541,60 @@ public class Database {
 	}
 	
 	
+	
+
+	
+	/**
+	 * Method: boolean deleteUser(String username)
+	 * 
+	 * Description: remove the user given that user's username.
+	 * 
+	 * @param username is the username of the user to be removed
+	 * 
+	 * @return true if successfully deleted from the database, else false
+	 */
+	public boolean deleteUser(String username)
+	{
+		String query = "DELETE FROM userDB WHERE username = ?";
+		try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+			pstmt.setString(1, username);
+			pstmt.executeUpdate();
+			System.out.println("Deleting user "+username+"from database \n");
+			System.out.println("DEBUG: after deletion, the first name of the user is:" + getFirstName(username)
+					+"\n current users are: "+getUserList());
+			return true;
+			
+		} catch (SQLException e) {
+			return false;
+		}
+	}
+	
+	
+	/**
+	 * Method: void updatePassword(String password, String username)
+	 * 
+	 * Description: Update the first name of a user given that user's username and the new
+	 *		password
+	 * 
+	 * @param password of the newly updated password
+	 * @param username of the user to be updated
+	 */
+	public void updatePassword(String password, String username)
+	{
+		String query = "UPDATE userDB set passWord = ? WHERE userName = ?";
+		try (PreparedStatement pstmt = connection.prepareStatement(query))
+		{
+			pstmt.setString(1, password);
+	        pstmt.setString(2, username);
+	        pstmt.executeUpdate();
+	        currentPassword = password;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return;
+	}
+	
+	
 	/*******
 	 * <p> Method: String getFirstName(String username) </p>
 	 * 
@@ -816,7 +870,7 @@ public class Database {
 	 */
 	// get the attributes for a specified user
 	public boolean getUserAccountDetails(String username) {
-		String query = "SELECT * FROM userDB WHERE username = ?";
+		String query = "SELECT * FROM userDB WHERE userName = ?";
 		try (PreparedStatement pstmt = connection.prepareStatement(query)) {
 			pstmt.setString(1, username);
 	        ResultSet rs = pstmt.executeQuery();			

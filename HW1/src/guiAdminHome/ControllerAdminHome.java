@@ -100,24 +100,6 @@ public class ControllerAdminHome {
 		ViewAdminHome.alertNotImplemented.showAndWait();
 	}
 	
-	/**********
-	 * <p> 
-	 * 
-	 * Title: setOnetimePassword () Method. </p>
-	 * 
-	 * <p> Description: Protected method that is currently a stub informing the user that
-	 * this function has not yet been implemented. </p>
-	 */
-	
-	
-	//todo: validate password input
-	protected static void setOnetimePassword () {
-		System.out.println("\n*** WARNING ***: One-Time Password Not Yet Implemented");
-		ViewAdminHome.alertNotImplemented.setTitle("*** WARNING ***");
-		ViewAdminHome.alertNotImplemented.setHeaderText("One-Time Password Issue");
-		ViewAdminHome.alertNotImplemented.setContentText("One-Time Password Not Yet Implemented");
-		ViewAdminHome.alertNotImplemented.showAndWait();
-	}
 	
 	/**********
 	 * <p> 
@@ -128,11 +110,9 @@ public class ControllerAdminHome {
 	 * this function has not yet been implemented. </p>
 	 */
 	protected static void deleteUser() {
-		System.out.println("\n*** WARNING ***: Delete User Not Yet Implemented");
-		ViewAdminHome.alertNotImplemented.setTitle("*** WARNING ***");
-		ViewAdminHome.alertNotImplemented.setHeaderText("Delete User Issue");
-		ViewAdminHome.alertNotImplemented.setContentText("Delete User Not Yet Implemented");
-		ViewAdminHome.alertNotImplemented.showAndWait();
+		guiDeleteUser.ViewDeleteUser.displayDeleteUser(ViewAdminHome.theStage,
+				ViewAdminHome.theUser);
+		
 	}
 	
 	/**********
@@ -183,6 +163,30 @@ public class ControllerAdminHome {
 			ViewAdminHome.alertEmailError.setContentText(
 					"Correct the email address and try again.");
 			ViewAdminHome.alertEmailError.showAndWait();
+			return true;
+		}
+		return false;
+	}
+	
+	
+	
+	/**********
+	 * <p> 
+	 * 
+	 * Title: invalidUsername () Method. </p>
+	 * 
+	 * <p> Description: Protected method that is intended to check an username before it is
+	 * used to reduce errors.  The code currently only checks to see that the username is not
+	 * empty.  In the future, a syntactic check must be performed and maybe there is a way to check
+	 * if a proper username is active.</p>
+	 * 
+	 * @param emailAddress	This String holds what is expected to be an email address
+	 */
+	protected static boolean invalidUsernamd(String userName) {
+		if (userName.length() == 0) {
+			ViewAdminHome.alertUserNameError.setContentText(
+					"Correct the username and try again.");
+			ViewAdminHome.alertUserNameError.showAndWait();
 			return true;
 		}
 		return false;

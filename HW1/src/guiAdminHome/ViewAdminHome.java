@@ -115,6 +115,10 @@ public class ViewAdminHome {
 	protected static Button button_Logout = new Button("Logout");
 	protected static Button button_Quit = new Button("Quit");
 
+	
+	
+	
+	
 	// This is the end of the GUI objects for the page.
 	
 	// These attributes are used to configure the page and populate it with this user's information
@@ -267,6 +271,10 @@ public class ViewAdminHome {
     
 		setupButtonUI(button_Quit, "Dialog", 18, 250, Pos.CENTER, 300, 540);
 		button_Quit.setOnAction((event) -> {ControllerAdminHome.performQuit(); });
+		
+		
+		
+		
 
 		// This is the end of the GUI initialization code
 		
